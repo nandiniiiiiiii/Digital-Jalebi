@@ -5,6 +5,7 @@ import LoadingState from './LoadingState';
 import UserData from './UserData';
 import styled from 'styled-components';
 
+// This is the main component 
 function Home() {
     const [users, setUser] = useState([]);
     const [error, setError] = useState(false);
@@ -20,6 +21,7 @@ function Home() {
                 try {
                     setError(false)
                     { count == 1 && setLoading(true) }
+                    //handling API using axios(react library)
                     const res = await axios.get('https://dummyjson.com/users/search?q=' + search, {
                         signal: controller.signal
                     })     //here we can send an object with while calling an api
@@ -56,16 +58,20 @@ function Home() {
 
     return (
         <Container>
-            <input
-                type='text'
-                placeholder='Search...'
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
+            <div><span className='bigcontent'>Search:</span>
+            {/* search bar */}
+                <input
+                    className='searchbar'
+                    type='text'
+                    placeholder='Search firstname, lastname & Email...'
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+            </div>
             {/* table of all the content */}
-            <table>
+            <table className='content'>
                 <thead>
-                    <tr>
+                    <tr className='headpart'>
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
@@ -74,7 +80,8 @@ function Home() {
                         <th>For More info.</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className='bodypart'>
+                    {/* this component will render all the data */}
                     <UserData users={users} />
                 </tbody>
             </table>
@@ -83,10 +90,35 @@ function Home() {
 }
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  .bigcontent{
+        font-size: 1.8rem;
+    }
+  .searchbar{
+    margin: 30px;
+    width: 700px;
+    height: 25px
+  }
+  .content{
+    padding: 50px 50px;
+    background: linear-gradient(135deg, rgba(229, 165, 87,0.8) ,rgba(225, 129, 12,0.9));
+    backdrop-filter: blur(30px);
+    border-radius: 20px;
+    width: 100%;
+    th,td{
+        padding: 10px;
+        border-bottom: 1px black solid;
+    }
+    .headpart{
+        th{
+            font-size: 1.2rem;
+            gap:10px;
+        }
+    }
+  }
 `
 
 export default Home

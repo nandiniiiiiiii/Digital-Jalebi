@@ -1,0 +1,13 @@
+.btn{
+    height:30px;
+    width: 100px;
+}
+
+.btnlink{
+    text-decoration: none;
+    color: antiquewhite;
+}
+
+.rowtext{
+    margin:40px;
+}
