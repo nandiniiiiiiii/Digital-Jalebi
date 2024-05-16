@@ -55,6 +55,15 @@ Install npm
   git pull https://github.com/nandiniiiiiiii/Digital-Jalebi.git
 ```
 
+If any dependency error kindly install the following:
+
+```bash
+  npm i axios
+  npm i react-spinners
+  npm i styled-components
+  npm i react-router-dom
+```
+
 <br>
 
 # Project Structure
